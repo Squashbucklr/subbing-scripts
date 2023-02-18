@@ -10,7 +10,7 @@ Generate an mkv in a workspace using the following structure
 
 * episodes
     * ep code or number (EP)
-        * \EP\_dialogue.ass
+        * EP\_dialogue.ass
         * fonts.conf
         * karaoke.conf
         * source.mkv
