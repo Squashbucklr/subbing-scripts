@@ -9,8 +9,8 @@ Copy styles and dialogue from one .ass file (karaoke) into another (dialogue)
 Generate an mkv in a workspace using the following structure
 
 * episodes
-    * ep code or number (${ep})
-        * ${ep}\_dialogue.ass
+    * ep code or number (\${ep})
+        * \${ep}\_dialogue.ass
         * fonts.conf
         * karaoke.conf
         * source.mkv
@@ -18,8 +18,8 @@ Generate an mkv in a workspace using the following structure
 * fonts
     * ...
 * karaoke
-    * karaoke name (${karaoke})
-        * ${karaoke}.ass
+    * karaoke name (\${karaoke})
+        * \${karaoke}.ass
         * fonts.conf
     * ...
 * output
@@ -28,14 +28,14 @@ Generate an mkv in a workspace using the following structure
 
 fonts.conf are a list of font names with extension that are in the fonts folder.
 
-karaoke.conf are a list of karaoke names (${karaoke})
+karaoke.conf are a list of karaoke names (\${karaoke})
 
 source.mkv is probably symlinked from another release
 
 output is a folder for resulting mkvs to be stored in
 
 merge.sh is the mkvmerge script, given arguments:
-* $1 = ep code (${ep})
+* \$1 = ep code (\${ep})
 * $2 = gensub, the generated (temporary) subtitle file from genmkv.sh
 
 untested with spaced font names
