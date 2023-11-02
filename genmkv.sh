@@ -1,14 +1,20 @@
 #!/bin/bash
 
 ep=$1
+folder=$2
+epfolder=$ep
 
 if [ ${#ep} = 0 ]; then
     echo "Usage: genmkv.sh EPISODE"
     exit 1
 fi
 
-if [ ! -d "episodes/$ep" ]; then
-    echo "Invalid episode"
+if [ ${#folder} -ne 0 ]; then
+    epfolder="${folder}/${ep}"
+fi
+
+if [ ! -d "episodes/$epfolder" ]; then
+    echo "Episode folder does not exist"
     exit 1
 fi
 
@@ -35,14 +41,14 @@ fontsfromfile () {
 #   EPISODE SPECIFIC FONTS
 #
 
-fontsfromfile episodes/$ep/fonts.conf
+fontsfromfile episodes/$epfolder/fonts.conf
 
 #
 #   KARAOKE
 #
 
-cp ./episodes/$ep/${ep}_dialogue.ass gen_input_$$.ass
-for karaoke in $(cat ./episodes/$ep/karaoke.conf); do
+cp ./episodes/$epfolder/${ep}_dialogue.ass gen_input_$$.ass
+for karaoke in $(cat ./episodes/$epfolder/karaoke.conf); do
     echo "Merging karaoke: $karaoke"
     ./karaoke.sh karaoke/$karaoke/${karaoke}.ass gen_input_$$.ass > gen_output_$$.ass
     rm gen_input_$$.ass
@@ -55,6 +61,6 @@ echo "Karaoke merged"
 #   MERGE
 #
 
-./merge.sh $ep gen_input_$$.ass "${fonts[@]}"
+./merge.sh $ep $epfolder gen_input_$$.ass "${fonts[@]}"
 
 rm gen_input_$$.ass
